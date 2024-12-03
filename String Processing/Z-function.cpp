@@ -1,7 +1,7 @@
 /*
 	Description: Longest common  prefix between s and s[i:]
-	TODO: Time: O(?)
-	TODO: Space: O(?)
+	Time: O(N)
+	Space: O(M)
 */
 
 vector<int> z_function(string s) {

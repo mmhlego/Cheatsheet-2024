@@ -1,7 +1,9 @@
+// FIXME: DELETE
+
 /*
 	Description: A Lucas Theorem based solution to compute nCr % p
-	TODO Time: O(K)
-	TODO Space: O(1)
+	Time: O(log_p(N))
+	Space: O(r)
 */
 
 int nCr_Modp_DP(int n, int r, int p) {

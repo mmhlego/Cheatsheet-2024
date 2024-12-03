@@ -1,7 +1,8 @@
 /*
 	Description: -
-	TODO: Time: O(N * log(N))
-	Space: O(2 * N)
+	Time: Construction: O(N * log(N))
+		  Query: O(1)
+	Space: O(N)
 */
 
 vector<vector<ll>>buildSparseTable(vector<ll> array, const ll& (*func)(const ll&, const ll&)) {

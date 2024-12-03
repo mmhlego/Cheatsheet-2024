@@ -1,7 +1,7 @@
 /*
 	Description: -
-	TODO Time: O(max(N, M))
-	TODO Space: O(max(N, M))
+	Time: O(N * log(N))
+	Space: O(N)
 */
 
 vector<int> buildSuffixArray(vector<int>& s) {
@@ -67,7 +67,6 @@ bool comp(const string& s, int i, const string& t, int k) {
 
 }
 
-
 bool queryExists(const string& s, const string& subs, const vector<int>& suffixArray, vector<vector<int>>& lcpSparseTable) {
 	int n = s.size(), l = 0, r = n - 1;
 	while (l + 1 < r) {
@@ -84,8 +83,7 @@ bool queryExists(const string& s, const string& subs, const vector<int>& suffixA
 }
 
 
-
-
+// TODO
 // between n strings s1,...,sn finds longest common between atleast k of them (undefined behavior k=1)
 int longestCommonSubstring(const vector<string> strings, int k) {
 	vector<int> s;

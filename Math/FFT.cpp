@@ -18,27 +18,6 @@ const int MN = 262144 << 1;
 int d[MN + 10], d2[MN + 10];
 const double PI = acos(-1.0);
 
-struct cpx {
-	double real, image;
-	cpx(double _real, double _image) {
-		real = _real;
-		image = _image;
-	}
-	cpx() {}
-};
-
-cpx operator + (const cpx& c1, const cpx& c2) {
-	return cpx(c1.real + c2.real, c1.image + c2.image);
-}
-
-cpx operator - (const cpx& c1, const cpx& c2) {
-	return cpx(c1.real - c2.real, c1.image - c2.image);
-}
-
-cpx operator * (const cpx& c1, const cpx& c2) {
-	return cpx(c1.real * c2.real - c1.image * c2.image, c1.real * c2.image + c1.image * c2.real);
-}
-
 int rev(int id, int len) {
 	int ret = 0;
 	for (int i = 0; (1 << i) < len; i++) {
@@ -48,31 +27,33 @@ int rev(int id, int len) {
 	return ret;
 }
 
-cpx A[1 << 20];
+complex<double> A[1 << 20];
 
-void FFT(cpx* a, int len, int DFT) {
+void FFT(complex<double>* a, int len, int DFT) {
 	for (int i = 0; i < len; i++)
 		A[rev(i, len)] = a[i];
+
 	for (int s = 1; (1 << s) <= len; s++) {
 		int m = (1 << s);
-		cpx wm = cpx(cos(DFT * 2 * PI / m), sin(DFT * 2 * PI / m));
+		complex<double> wm = complex<double>(cos(DFT * 2 * PI / m), sin(DFT * 2 * PI / m));
+
 		for (int k = 0; k < len; k += m) {
-			cpx w = cpx(1, 0);
+			complex<double> w = complex<double>(1, 0);
 			for (int j = 0; j < (m >> 1); j++) {
-				cpx t = w * A[k + j + (m >> 1)];
-				cpx u = A[k + j];
+				complex<double> t = w * A[k + j + (m >> 1)];
+				complex<double> u = A[k + j];
 				A[k + j] = u + t;
 				A[k + j + (m >> 1)] = u - t;
 				w = w * wm;
 			}
 		}
 	}
-	if (DFT == -1) for (int i = 0; i < len; i++) A[i].real /= len, A[i].image /= len;
+	if (DFT == -1) for (int i = 0; i < len; i++) A[i].real() /= len, A[i].imag() /= len;
 	for (int i = 0; i < len; i++) a[i] = A[i];
 	return;
 }
 
-cpx in[1 << 20];
+complex<double> in[1 << 20];
 
 void solve(int n) {
 	memset(d, 0, sizeof d);
@@ -89,9 +70,9 @@ void solve(int n) {
 
 	for (int i = 0; i < MN; ++i) {
 		if (d[i])
-			in[i] = cpx(1, 0);
+			in[i] = complex<double>(1, 0);
 		else
-			in[i] = cpx(0, 0);
+			in[i] = complex<double>(0, 0);
 	}
 
 	FFT(in, MN, 1);
@@ -102,7 +83,7 @@ void solve(int n) {
 
 	int ans = 0;
 	for (int i = 0; i < q.size(); ++i) {
-		if (in[q[i]].real > 0.5 || d[q[i]]) {
+		if (in[q[i]].real() > 0.5 || d[q[i]]) {
 			ans++;
 		}
 	}

@@ -1,38 +1,36 @@
+// FIXME DELETE
+
 /*
-	Description: -
+	Descricomplex<double>ion: -
 	TODO Time: O(?)
 	TODO Space: O(?)
 */
 
-struct pt {
-	double x, y;
-};
-
-int orientation(pt a, pt b, pt c) {
-	double v = a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y);
+int orientation(complex<double> a, complex<double> b, complex<double> c) {
+	double v = a.real() * (b.imag() - c.imag()) + b.real() * (c.imag() - a.imag()) + c.real() * (a.imag() - b.imag());
 	if (v < 0) return -1; // clockwise
 	if (v > 0) return +1; // counter-clockwise
 	return 0;
 }
 
-bool cw(pt a, pt b, pt c, bool include_collinear) {
+bool cw(complex<double> a, complex<double> b, complex<double> c, bool include_collinear) {
 	int o = orientation(a, b, c);
 	return o < 0 || (include_collinear && o == 0);
 }
-bool ccw(pt a, pt b, pt c, bool include_collinear) {
+bool ccw(complex<double> a, complex<double> b, complex<double> c, bool include_collinear) {
 	int o = orientation(a, b, c);
 	return o > 0 || (include_collinear && o == 0);
 }
 
-void convex_hull(vector<pt>& a, bool include_collinear = false) {
+void convex_hull(vector<complex<double>>& a, bool include_collinear = false) {
 	if (a.size() == 1)
 		return;
 
-	sort(a.begin(), a.end(), [](pt a, pt b) {
-		return make_pair(a.x, a.y) < make_pair(b.x, b.y);
+	sort(a.begin(), a.end(), [](complex<double> a, complex<double> b) {
+		return make_pair(a.real(), a.imag()) < make_pair(b.real(), b.imag());
 		});
-	pt p1 = a[0], p2 = a.back();
-	vector<pt> up, down;
+	complex<double> p1 = a[0], p2 = a.back();
+	vector<complex<double>> up, down;
 	up.push_back(p1);
 	down.push_back(p1);
 	for (int i = 1; i < (int)a.size(); i++) {

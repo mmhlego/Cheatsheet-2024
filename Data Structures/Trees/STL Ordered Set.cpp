@@ -18,6 +18,7 @@ int main() {
 
 	tree.insert(3);
 	tree.order_of_key(1);
+	tree.find_by_order(1);
 	tree.size();
 	tree.max_size();
 	*tree.lower_bound(0);

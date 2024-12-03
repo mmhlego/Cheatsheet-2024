@@ -1,7 +1,7 @@
 /*
 	Description: -
-	TODO Time: O(K)
-	TODO Space: O(1)
+	Time: O(log_k(n))
+	Space: O(1)
 */
 
 int fact_pow(int n, int k) {
@@ -12,3 +12,5 @@ int fact_pow(int n, int k) {
 	}
 	return res;
 }
+
+// TODO

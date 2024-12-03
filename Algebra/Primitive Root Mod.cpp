@@ -3,8 +3,8 @@
 				 there exist a (k) S.T. ((g^k = a mod m))
 				 generator exists if and only if m=1,2,4 or for some odd prime (p)
 				 m=p^k , 2*p^k
-	TODO: Time: O(?)
-	TODO: Space: O(?)
+	Time: O(log(m) ^ 6)
+	Space: O(sqrt(m))
 */
 
 // Import
@@ -23,13 +23,12 @@ ll generator(ll m) {
 	if (n > 1)
 		fact.push_back(n);
 
-	// TODO: What is p
-	for (ll res = 2; res <= p; ++res) {
+	for (ll res = 2; res <= m; ++res) {
 		bool ok = true;
 		for (size_t i = 0; i < fact.size() && ok; ++i)
 			ok &= binary_power(res, totiont / fact[i], p) != 1;
-		if (!ok)break;
-		if (ok)  return res;
+
+		if (ok) return res;
 	}
 
 	return -1;

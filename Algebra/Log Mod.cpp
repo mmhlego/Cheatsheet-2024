@@ -1,12 +1,11 @@
 /*
-	Description: -
-	TODO: Time: O(?)
-	TODO: Space: O(?)
+	Description: Returns x for which ((a^x = b mod m)), a and m are co-prime
+	Time: O(sqrt(m) * log(m))
+	Space: O(sqrt(m))
 */
 
 ll binary_power(ll a, ll b, ll m);
 
-// Returns x for which ((a^x = b mod m)), a and m are co-prime.
 ll discrete_log(ll a, ll b, ll m) {
 	a %= m, b %= m;
 	ll n = sqrt(m) + 1;

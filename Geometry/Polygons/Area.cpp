@@ -2,7 +2,8 @@
 // Counter-clockwise: positive
 
 double triangle_signed_area(complex<double> a, complex<double> b, complex<double> c) {
-	return cross(b - a, c - b) / 2.0;
+	// return cross(b - a, c - b) / 2.0;
+	return (conj(b - a) * (c - b)).imag() / 2.0;
 }
 
 // Polygon is sum of signed triangles

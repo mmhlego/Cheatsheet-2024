@@ -1,8 +1,10 @@
 /*
 	Description: -
-	TODO Time: O(?)
-	TODO Space: O(?)
+	Time: O(|P| + |Q|)
+	Space: O(|P| + |Q|)
 */
+
+// TODO
 
 struct pt {
 	long long x, y;

@@ -1,5 +1,3 @@
-// TODO
-
 struct point3d {
 	ftype x, y, z;
 	point3d() {}
